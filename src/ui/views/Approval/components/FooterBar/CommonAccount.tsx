@@ -4,6 +4,7 @@ import { Signal } from '@/ui/component/Signal';
 
 export interface Props {
   icon: string;
+  iconBrightness?: number;
   signal?: 'CONNECTED' | 'DISCONNECTED';
   customSignal?: React.ReactNode;
   tip?: React.ReactNode;
@@ -18,6 +19,7 @@ export const CommonAccount: React.FC<Props> = ({
   customSignal,
   children,
   footer,
+  iconBrightness,
 }) => {
   const bgColor = React.useMemo(() => {
     switch (signal) {
@@ -34,7 +36,15 @@ export const CommonAccount: React.FC<Props> = ({
     <section>
       <div className={clsx('space-x-6 flex items-start', 'relative')}>
         <div className="relative">
-          <img src={icon} className="w-[20px] h-[20px]" />
+          <img
+            src={icon}
+            className="w-[20px] h-[20px]"
+            style={{
+              filter: iconBrightness
+                ? `brightness(${iconBrightness})`
+                : 'unset',
+            }}
+          />
           {customSignal}
           {signal && <Signal isBadge color={bgColor} />}
         </div>

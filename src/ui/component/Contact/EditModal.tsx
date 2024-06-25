@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Drawer, Input, Button, Form } from 'antd';
 import { useWallet } from 'ui/utils';
 import { UIContactBookItem } from 'background/service/contactBook';
+import { Divide } from '@/ui/views/Approval/components/Divide';
 import './style.less';
 
 interface EditModalProps {
@@ -76,10 +77,10 @@ const EditModal = ({ address, visible, onOk, onCancel }: EditModalProps) => {
       visible={visible}
       onClose={onCancel}
       placement="bottom"
-      height="240px"
+      height="224px"
       destroyOnClose
     >
-      <Form onFinish={handleConfirm}>
+      <Form onFinish={handleConfirm} className="mt-[8px] mb-[28px]">
         <Input
           autoFocus
           allowClear
@@ -89,10 +90,11 @@ const EditModal = ({ address, visible, onOk, onCancel }: EditModalProps) => {
           ref={inputRef}
         />
       </Form>
+      <Divide className="bg-r-neutral-line absolute left-0" />
       <div className="flex justify-center">
         <Button
           type="primary"
-          className="mt-32 w-[200px]"
+          className="mt-20 w-[200px]"
           onClick={handleConfirm}
           size="large"
           disabled={!name}
